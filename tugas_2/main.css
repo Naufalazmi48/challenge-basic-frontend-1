@@ -1,0 +1,149 @@
+@font-face {
+  font-family: "Fightree";
+  src: url('./assets/fonts/static/Figtree-ExtraBold.ttf');
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "Fightree";
+  src: url('./assets/fonts/static/Figtree-Medium.ttf');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Fightree";
+  src: url('./assets/fonts/Figtree-Italic-VariableFont_wght.ttf');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Fightree";
+  src: url('./assets/fonts/Figtree-VariableFont_wght.ttf');
+  font-weight: 300;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Color */
+  --yellow: #F4D04E;
+  --gray-950: #111111;
+  --gray-500: #6B6B6B;
+
+  /* Typography */
+  --font-family: "Fightree";
+
+  /* Spacing */
+  --spacing-24: 24px;
+  --spacing-12: 12px;
+  --spacing-8: 8px;
+  --spacing-4: 4px;
+
+  background-color: var(--yellow);
+}
+
+.text-preset-1 {
+  font-family: var(--font-family);
+  font-weight: 800;
+  font-size: 1.5rem; 
+  line-height: 150%;
+  letter-spacing: 0px;
+  margin: 0;
+}
+
+.text-preset-2 {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 150%;
+  letter-spacing: 0px;
+}
+
+.text-preset-3 {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 150%;
+  letter-spacing: 0px;
+}
+
+.text-preset-3-bold {
+  font-family: var(--font-family);
+  font-weight: 800;
+  font-size: 0.875rem;
+  line-height: 150%;
+  letter-spacing: 0px;
+}
+
+p {
+  color: var(--gray-950);
+}
+
+.text-title-content:hover {
+  color: var(--yellow);
+}
+
+.text-description-content {
+  color: var(--gray-500);
+}
+
+.content-type-container {
+  padding: 4px 12px;
+  background-color: var(--yellow);
+  border-radius: 4px;
+  width: fit-content;
+  height: fit-content;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.img-content {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  width: clamp(200px, 50%, 400px);
+  height: fit-content;
+  min-height: 522px;
+  padding: 24px;
+  border-radius: 20px;
+  background-color: white;
+  border-style: inset;
+  border-color: var(--gray-950);
+  border-width: 1px;
+  box-shadow: 8px 8px 0px 0px var(--gray-950);
+  gap: 24px;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.avatar-container {
+  display: flex;
+  gap: 12px;
+  flex-direction: row;
+  align-items: center;
+  margin-top: auto;
+}
+
+.avatar-img {
+  width: 32px;
+  height: 32px;
+}
