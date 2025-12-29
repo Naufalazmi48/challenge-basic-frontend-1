@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Typing Speed Test</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <link rel="stylesheet" href="./main.css">
+  <link rel="stylesheet" href="./components.css">
+</head>
+
+<body>
+  <header>
+
+    <picture>
+      <source media="(max-width: 768px)" srcset="./assets/images/logo-small.svg">
+      <img src="./assets/images/logo-large.svg" alt="Logo">
+    </picture>
+
+    <div class="personal-best-container">
+      <img src="./assets/images/icon-personal-best.svg" alt="Personal Best">
+      <p class="text-preset-4">
+        Personal Best:
+        <span class="text-preset-4">0 WPM</span>
+      </p>
+    </div>
+
+  </header>
+  <main>
+    <div class="main-point-setting-container">
+
+      <div class="main-point-container">
+        <p class="text-preset-3">
+          WPM:
+          <span id="wpm-text" class="text-preset-3">0</span>
+        </p>
+        <hr class="solid">
+        <p class="text-preset-3">
+          Accuracy:
+          <span id="accuracy-text" class="text-preset-3">0%</span>
+        </p>
+        <hr class="solid">
+        <p class="text-preset-3">
+          Time:
+          <span id="timer-text" class="text-preset-3">0:00</span>
+        </p>
+      </div>
+
+      <div class="main-setting-container">
+        <p class="text-preset-5">Difficulty:</p>
+        <div class="main-setting-selector-container" id="difficulty-selector">
+        </div>
+        <hr class="solid">
+        <p class="text-preset-5">Mode:</p>
+        <div class="main-setting-selector-container" id="mode-selector">
+        </div>
+      </div>
+
+      <div class="main-setting-container-mobile" name="difficulty">
+        <select class="main-setting-dropdown text-preset-3">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+        <select class="main-setting-dropdown text-preset-3">
+          <option value="timed">Timed (60s)</option>
+          <option value="passage">Passage</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="main-content-container">
+      <div id="main-content-text-container">
+        <p class="main-content-text text-preset-1-regular">The philosopher's argument hinged on a seemingly
+          paradoxical assertion: that absolute freedom, pursued without
+          constraint, inevitably undermines itself. "Consider," she wrote, "how the libertarian ideal—when taken to its
+          logical extreme—produces conditions in which the powerful dominate the weak, thereby eliminating freedom for
+          the
+          majority." Her critics dismissed this as sophistry; her supporters hailed it as profound.</p>
+      </div>
+
+      <div id="floating-container">
+        <button class="text-preset-3-semi-bold" id="start-button">Start Typing Test</button>
+        <p class="text-preset-3-semi-bold">Or click the text and start typing</p>
+      </div>
+    </div>
+
+    <div id="restart-test-container">
+      <button class="text-preset-3-semi-bold" id="restart-button">
+        Restart Test
+        <img src="./assets/images/icon-restart.svg" alt="Restart">
+      </button>
+    </div>
+  </main>
+  <script type="module" src="./main.js"></script>
+</body>
+
+</html>
