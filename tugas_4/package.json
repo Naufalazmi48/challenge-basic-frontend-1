@@ -1,0 +1,18 @@
+{
+  "name": "tugas_4",
+  "version": "1.0.0",
+  "description": "Taruh source code dari [Tugas 4](https://www.frontendmentor.io/challenges/typing-speed-test) disini.",
+  "main": "main.js",
+  "scripts": {
+    "build-css": "npx tailwindcss -i ./styles.css -o ./dist/output.css --minify",
+    "test": "node ./utils/__tests__/GameUtil.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.18",
+    "tailwindcss": "^4.1.18"
+  }
+}
