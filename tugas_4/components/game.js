@@ -133,23 +133,20 @@ export class Game {
   }
 
   // ==================================== Method ======================================
-  _updateWPMScore() {
-    const { totalCorrectWord } = GameUtil.countCorrectWord({ challengeText: this.challengeText, submittedText: this.submissionText });
-    const wpm = GameUtil.countWPM({ totalCorrectWord, timeInSecond: this.timerInSecond });
+  _updateWPMScore({ totalCorrectCharacter }) {
+    const wpm = GameUtil.countWPM({ totalCorrectCharacter, timeInSecond: this.timerInSecond });
     this.setWPM(wpm);
   };
 
-  _updateAccuracyScore() {
-    const { totalCharacterChecked, totalWrongCharacter } = GameUtil.countCharacterChecked({ challengeText: this.challengeText, submittedText: this.submissionText });
-    const accuracy = GameUtil.countAccuracy({ totalCharacterChecked, totalWrongCharacter });
+  _updateAccuracyScore({ totalSubmittedCharacter, totalWrongCharacter }) {
+    const accuracy = GameUtil.countAccuracy({ totalCharacterChecked: totalSubmittedCharacter, totalWrongCharacter });
     this.setAccuracy(accuracy);
   };
 
   _updateScore() {
-    if (this.timerInSecond >= 60 || this.status === GAME_STATUS.END) {
-      this._updateWPMScore();
-    }
-    this._updateAccuracyScore();
+    const { totalCorrectCharacter, totalSubmittedCharacter, totalWrongCharacter } = GameUtil.countCharacter({ challengeText: this.challengeText, submittedText: this.submissionText });
+    this._updateWPMScore({ totalCorrectCharacter });
+    this._updateAccuracyScore({ totalSubmittedCharacter, totalWrongCharacter });
   }
 
   _resetGame() {
