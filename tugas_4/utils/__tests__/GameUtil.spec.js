@@ -1,114 +1,139 @@
 import assert from 'assert';
 import { GameUtil } from '../GameUtil.js';
 
-console.info('=========================================== GameUtil.countCorrectWord =============================================');
+console.info('=========================================== GameUtil.countCharacter =============================================');
 (() => {
-  // Test GameUtil.countCorrectWord Case A
+  // Test GameUtil.countCharacter Case A
 
   try {
     // Given
     const challengeText = 'Lalu Naufal Azmi';
     const submittedText = 'Lalu Naufal Azmi';
 
-    const expectedCorrectWord = 3;
-    const expectedSubmittedWord = 3;
-    const expectedResult = { totalCorrectWord: expectedCorrectWord, totalSubmittedWord: expectedSubmittedWord };
+    const expectedCorrectCharacter = 16;
+    const expectedSubmittedCharacter = 16;
+    const expectedWrongCharacter = 0;
+    const expectedResult = {
+      totalCorrectCharacter: expectedCorrectCharacter,
+      totalSubmittedCharacter: expectedSubmittedCharacter,
+      totalWrongCharacter: expectedWrongCharacter
+    };
     // When
-    const result = GameUtil.countCorrectWord({ challengeText, submittedText });
+    const result = GameUtil.countCharacter({ challengeText, submittedText });
     // Then
     assert.deepStrictEqual(result, expectedResult);
-    console.info(`Test GameUtil.countCorrectWord Case A: Passed`);
+    console.info(`Test GameUtil.countCharacter Case A: Passed`);
   } catch (error) {
     console.error(error);
-    console.info(`Test GameUtil.countCorrectWord Case A: Failed`);
+    console.info(`Test GameUtil.countCharacter Case A: Failed`);
   }
 })();
 
 (() => {
-  // Test GameUtil.countCorrectWord Case B
+  // Test GameUtil.countCharacter Case B
 
   try {
     // Given
     const challengeText = 'Lalu Naufal Azmi';
     const submittedText = 'La luNaufal Azmi';
 
-    const expectedCorrectWord = 2;
-    const expectedSubmittedWord = 3;
-    const expectedResult = { totalCorrectWord: expectedCorrectWord, totalSubmittedWord: expectedSubmittedWord };
+    const expectedCorrectCharacter = 13;
+    const expectedSubmittedCharacter = 16;
+    const expectedWrongCharacter = 3;
+    const expectedResult = {
+      totalCorrectCharacter: expectedCorrectCharacter,
+      totalSubmittedCharacter: expectedSubmittedCharacter,
+      totalWrongCharacter: expectedWrongCharacter
+    };
     // When
-    const result = GameUtil.countCorrectWord({ challengeText, submittedText });
+    const result = GameUtil.countCharacter({ challengeText, submittedText });
     // Then
     assert.deepStrictEqual(result, expectedResult);
-    console.info(`Test GameUtil.countCorrectWord Case B: Passed`);
+    console.info(`Test GameUtil.countCharacter Case B: Passed`);
   } catch (error) {
     console.error(error);
-    console.info(`Test GameUtil.countCorrectWord Case B: Failed`);
+    console.info(`Test GameUtil.countCharacter Case B: Failed`);
   }
 })();
 
 (() => {
-  // Test GameUtil.countCorrectWord Case C
+  // Test GameUtil.countCharacter Case C
 
   try {
     // Given
     const challengeText = 'Lalu Naufal Azmi';
     const submittedText = 'La luNaufal';
 
-    const expectedCorrectWord = 1;
-    const expectedSubmittedWord = 2;
-    const expectedResult = { totalCorrectWord: expectedCorrectWord, totalSubmittedWord: expectedSubmittedWord };
+    const expectedCorrectCharacter = 8;
+    const expectedSubmittedCharacter = 11;
+    const expectedWrongCharacter = 3;
+    const expectedResult = {
+      totalCorrectCharacter: expectedCorrectCharacter,
+      totalSubmittedCharacter: expectedSubmittedCharacter,
+      totalWrongCharacter: expectedWrongCharacter
+    };
     // When
-    const result = GameUtil.countCorrectWord({ challengeText, submittedText });
+    const result = GameUtil.countCharacter({ challengeText, submittedText });
     // Then
     assert.deepStrictEqual(result, expectedResult);
-    console.info(`Test GameUtil.countCorrectWord Case C: Passed`);
+    console.info(`Test GameUtil.countCharacter Case C: Passed`);
   } catch (error) {
     console.error(error);
-    console.info(`Test GameUtil.countCorrectWord Case C: Failed`);
+    console.info(`Test GameUtil.countCharacter Case C: Failed`);
   }
 })();
 
 (() => {
-  // Test GameUtil.countCorrectedWord when there isn't submitted text
+  // Test GameUtil.countCorrectedCharacter when there isn't submitted text
 
   try {
     // Given
     const challengeText = 'Lalu Naufal Azmi';
     const submittedText = '';
 
-    const expectedCorrectWord = 0;
-    const expectedSubmittedWord = 0;
-    const expectedResult = { totalCorrectWord: expectedCorrectWord, totalSubmittedWord: expectedSubmittedWord };
+    const expectedCorrectCharacter = 0;
+    const expectedSubmittedCharacter = 0;
+    const expectedWrongCharacter = 0;
+    const expectedResult = {
+      totalCorrectCharacter: expectedCorrectCharacter,
+      totalSubmittedCharacter: expectedSubmittedCharacter,
+      totalWrongCharacter: expectedWrongCharacter
+    };
     // When
-    const result = GameUtil.countCorrectWord({ challengeText, submittedText });
+    const result = GameUtil.countCharacter({ challengeText, submittedText });
     // Then
     assert.deepStrictEqual(result, expectedResult);
-    console.info(`Test GameUtil.countCorrectedWord when there isn't submitted text: Passed`);
+    console.info(`Test GameUtil.countCorrectedCharacter when there isn't submitted text: Passed`);
   } catch (error) {
     console.error(error);
-    console.info(`Test GameUtil.countCorrectedWord when there isn't submitted text: Failed`);
+    console.info(`Test GameUtil.countCorrectedCharacter when there isn't submitted text: Failed`);
   }
 })();
 
 (() => {
-  // Test GameUtil.countCorrectedWord when user submitted many white space
+  // Test GameUtil.countCorrectedCharacter when user submitted many white space
 
   try {
     // Given
     const challengeText = 'Lalu Naufal Azmi';
     const submittedText = 'Lalu na  ufal  a zmi';
 
-    const expectedCorrectWord = 1;
-    const expectedSubmittedWord = 3;
-    const expectedResult = { totalCorrectWord: expectedCorrectWord, totalSubmittedWord: expectedSubmittedWord };
+    const expectedCorrectCharacter = 6;
+    const expectedSubmittedCharacter = 16;
+    const expectedWrongCharacter = 10;
+    const expectedResult = {
+      totalCorrectCharacter: expectedCorrectCharacter,
+      totalSubmittedCharacter: expectedSubmittedCharacter,
+      totalWrongCharacter: expectedWrongCharacter
+    };
     // When
-    const result = GameUtil.countCorrectWord({ challengeText, submittedText });
+    const result = GameUtil.countCharacter({ challengeText, submittedText });
     // Then
     assert.deepStrictEqual(result, expectedResult);
-    console.info(`Test GameUtil.countCorrectedWord when user submitted many white space: Passed`);
+    console.info(`Test GameUtil.countCorrectedCharacter when user submitted many white space: Passed`);
   } catch (error) {
     console.error(error);
-    console.info(`Test GameUtil.countCorrectedWord when user submitted many white space: Failed`);
+    console.info(`Test GameUtil.countCorrectedCharacter when user submitted many white space: Failed`);
   }
 })();
 
@@ -117,13 +142,13 @@ console.info('\n=========================================== GameUtil.countWPM ==
   // Test GameUtil.countWPM should return correct WPM when time is 60 seconds
   try {
     // Given
-    const totalCorrectWord = 40;
+    const totalCorrectCharacter = 40;
     const timeInSecond = 60;
 
-    const expectedWPM = 40;
+    const expectedWPM = 8;
 
     // When
-    const result = GameUtil.countWPM({ totalCorrectWord, timeInSecond });
+    const result = GameUtil.countWPM({ totalCorrectCharacter, timeInSecond });
 
     // Then
     assert.strictEqual(result, expectedWPM);
@@ -138,13 +163,13 @@ console.info('\n=========================================== GameUtil.countWPM ==
   // Test GameUtil.countWPM should return correct WPM when time is under 60 seconds
   try {
     // Given
-    const totalCorrectWord = 40;
+    const totalCorrectCharacter = 40;
     const timeInSecond = 40;
 
-    const expectedWPM = 60;
+    const expectedWPM = 12;
 
     // When
-    const result = GameUtil.countWPM({ totalCorrectWord, timeInSecond });
+    const result = GameUtil.countWPM({ totalCorrectCharacter, timeInSecond });
 
     // Then
     assert.strictEqual(result, expectedWPM);
@@ -159,13 +184,13 @@ console.info('\n=========================================== GameUtil.countWPM ==
   // Test GameUtil.countWPM should return correct WPM when time is more than 60 seconds
   try {
     // Given
-    const totalCorrectWord = 40;
+    const totalCorrectCharacter = 40;
     const timeInSecond = 100;
 
-    const expectedWPM = 24;
+    const expectedWPM = 4;
 
     // When
-    const result = GameUtil.countWPM({ totalCorrectWord, timeInSecond });
+    const result = GameUtil.countWPM({ totalCorrectCharacter, timeInSecond });
 
     // Then
     assert.strictEqual(result, expectedWPM);
@@ -180,13 +205,13 @@ console.info('\n=========================================== GameUtil.countWPM ==
   // Test GameUtil.countWPM should return not NaN when timeInSecond is 0
   try {
     // Given
-    const totalCorrectWord = 0;
+    const totalCorrectCharacter = 0;
     const timeInSecond = 0;
 
     const expectedWPM = 0;
 
     // When
-    const result = GameUtil.countWPM({ totalCorrectWord, timeInSecond });
+    const result = GameUtil.countWPM({ totalCorrectCharacter, timeInSecond });
 
     // Then
     assert.strictEqual(result, expectedWPM);
@@ -194,82 +219,6 @@ console.info('\n=========================================== GameUtil.countWPM ==
   } catch (error) {
     console.error(error);
     console.info(`Test GameUtil.countWPM should not return NaN when timeInSecond is 0: Failed`);
-  }
-})();
-
-console.info('\n=========================================== GameUtil.countCharacterChecked =============================================');
-(() => {
-  // Test GameUtil.countCharacterChecked should return correct character checked when submitted text is correct
-  try {
-    // Given
-    const challengeText = 'Lalu Naufal Azmi';
-    const submittedText = 'Lalu Naufal A';
-
-    const expectedCharacterChecked = {
-      totalCharacterChecked: 11,
-      totalCorrectCharacter: 11,
-      totalWrongCharacter: 0
-    };
-
-    // When
-    const result = GameUtil.countCharacterChecked({ challengeText, submittedText });
-
-    // Then
-    assert.deepStrictEqual(result, expectedCharacterChecked);
-    console.info(`Test GameUtil.countCharacterChecked should return correct character checked when submitted text is correct: Passed`);
-  } catch (error) {
-    console.error(error);
-    console.info(`Test GameUtil.countCharacterChecked should return correct character checked when submitted text is correct: Failed`);
-  }
-})();
-
-(() => {
-  // Test GameUtil.countCharacterChecked should return correct character checked when submitted text is wrong
-  try {
-    // Given
-    const challengeText = 'Lalu Naufal Azmi';
-    const submittedText = 'LalutNaufaltAzmi';
-
-    const expectedCharacterChecked = {
-      totalCharacterChecked: 14,
-      totalCorrectCharacter: 14,
-      totalWrongCharacter: 0
-    };
-
-    // When
-    const result = GameUtil.countCharacterChecked({ challengeText, submittedText });
-
-    // Then
-    assert.deepStrictEqual(result, expectedCharacterChecked);
-    console.info(`Test GameUtil.countCharacterChecked should ignoring check white space in challenge text when count accuracy: Passed`);
-  } catch (error) {
-    console.error(error);
-    console.info(`Test GameUtil.countCharacterChecked should ignoring check white space in challenge text when count accuracy: Failed`);
-  }
-})();
-
-(() => {
-  // Test GameUtil.countCharacterChecked should return correct character checked when submitted text is wrong
-  try {
-    // Given
-    const challengeText = 'Lalu Naufal Azmi';
-    const submittedText = 'LalaiNaufalazmiiii';
-
-    const expectedCharacterChecked = {
-      totalCharacterChecked: 14,
-      totalCorrectCharacter: 10,
-      totalWrongCharacter: 4
-    };
-
-    // When
-    const result = GameUtil.countCharacterChecked({ challengeText, submittedText });
-
-    // Then
-    assert.deepStrictEqual(result, expectedCharacterChecked);
-    console.info(`Test GameUtil.countCharacterChecked should return correct character checked when submitted text is wrong: Passed`);
-  } catch (error) {
-    console.error(error);
-    console.info(`Test GameUtil.countCharacterChecked should return correct character checked when submitted text is wrong: Failed`);
   }
 })();
 
