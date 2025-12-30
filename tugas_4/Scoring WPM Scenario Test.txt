@@ -1,6 +1,6 @@
 How to count wpm?
-1. Get correct word count by Compare submit text with challenge text
-2. Count WPM with formula WPM = (correct word count / time in second) * 60
+1. Get correct character count by Compare submit text with challenge text
+2. Count WPM with formula WPM = (correct character count / 5) * (60 / time in second)
 
 Problem Case: How to count correct word?
 A. User input: "Lalu Naufal Azmi"  (Condition: Finished & Happy flow) 
