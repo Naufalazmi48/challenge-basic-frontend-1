@@ -3,9 +3,9 @@ How to count wpm?
 2. Count WPM with formula WPM = (correct word count / time in second) * 60
 
 Problem Case: How to count correct word?
-A. User input: "Lalu Naufal Azmi"  (Condition: Finished & Happy flow) (Expected: 3 Correct word count)
-B. User input: "La luNaufal Azmi" (Condition: Finished) (Expected: 2 Correct word count)
-C. User input: "La luNaufal" (Condition: timeout) (Expected: 1 Correct word count)
+A. User input: "Lalu Naufal Azmi"  (Condition: Finished & Happy flow) 
+B. User input: "La luNaufal Azmi" (Condition: Finished) 
+C. User input: "La luNaufal" (Condition: timeout) 
 
 
 Scenario 1: Compare submitted text by split white space (Not Valid to determine word by white space)
@@ -31,7 +31,7 @@ Steps:
    It's wrong, Correct word count = 0.
    Should Correct word count = 1 because Naufal consist from character id 5 until id 10 same with challenge text
 
-Scenario 2: Determine challenge word by character id (Selected Approach)
+Scenario 2: Determine challenge word by character id (Invalid, this approach not fear because word "a" and "house" have same value = 1)
 Steps:
 1. Get range character id challenge text separated by white space: [
   {start: 0, end: 3},
@@ -116,3 +116,25 @@ Steps:
     Challenge word: "Azmi"
     Submit word: ""
     It's wrong, Correct word count = 2
+
+    Scenario 3: Using formula WPM = Floor((correct character/5) * (60 / second))
+    CASE A:
+      Challenge text: "Lalu Naufal Azmi"
+      Submit text: "Lalu Naufal Azmi"
+      Correct character: 16
+      Second: 60
+      WPM: (16/5) * (60 / 60) = 3.2 = 3 WPM
+
+    CASE B:
+      Challenge text: "Lalu Naufal Azmi"
+      Submit text: "La luNaufal Azmi"
+      Correct character: 13
+      Second: 60
+      WPM: (13/5) * (60 / 60) = 2.6 = 2 WPM
+
+    CASE C:
+      Challenge text: "Lalu Naufal Azmi"
+      Submit text: "La luNaufal"
+      Correct character: 8
+      Second: 60
+      WPM: (8/5) * (60 / 60) = 1.6 = 1 WPM
