@@ -84,8 +84,15 @@ function onTypingLetterListener(isCorrectLetter, index) {
   }
 }
 
-function onTimerUpdateListener(time) {
-  document.getElementById('timer-text').textContent = time;
+function onTimerUpdateListener(timeInSecond, timeoutInSecond, timeDisplay) {
+  if (timeInSecond <= (timeoutInSecond * 0.2)) {
+    document.getElementById('timer-text').style.color = CSS_VAR_COLORS.GREEN_500;
+  } else if (timeInSecond <= (timeoutInSecond * 0.5)) {
+    document.getElementById('timer-text').style.color = CSS_VAR_COLORS.YELLOW_400;
+  } else {
+    document.getElementById('timer-text').style.color = CSS_VAR_COLORS.RED_500;
+  }
+  document.getElementById('timer-text').textContent = timeDisplay;
 }
 
 function onWPMUpdateListener(wpm) {
@@ -93,6 +100,13 @@ function onWPMUpdateListener(wpm) {
 }
 
 function onAccuracyUpdateListener(accuracy) {
+  if (accuracy >= 80) {
+    document.getElementById('accuracy-text').style.color = CSS_VAR_COLORS.GREEN_500;
+  } else if (accuracy >= 50) {
+    document.getElementById('accuracy-text').style.color = CSS_VAR_COLORS.YELLOW_400;
+  } else {
+    document.getElementById('accuracy-text').style.color = CSS_VAR_COLORS.RED_500;
+  }
   document.getElementById('accuracy-text').textContent = `${accuracy}%`;
 }
 

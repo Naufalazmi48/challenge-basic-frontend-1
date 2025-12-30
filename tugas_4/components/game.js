@@ -128,7 +128,7 @@ export class Game {
       const timeoutInSecond = this._getTimeoutInSecond();
       const timeDisplay = this.modeId === GAME_MODE_OPTION.TIMED ? (timeoutInSecond - this.timerInSecond) : this.timerInSecond;
       const formattedTime = this._formatTime(displayByModeId ? timeDisplay : this.timerInSecond);
-      this.onTimerUpdateListener(formattedTime);
+      this.onTimerUpdateListener(this.timerInSecond, this._getTimeoutInSecond(), formattedTime);
     }
   }
 
