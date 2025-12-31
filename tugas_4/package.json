@@ -4,13 +4,14 @@
   "description": "Taruh source code dari [Tugas 4](https://www.frontendmentor.io/challenges/typing-speed-test) disini.",
   "main": "main.js",
   "scripts": {
-    "build-css": "npx tailwindcss -i ./styles.css -o ./dist/output.css --minify",
+    "build-css:prod": "npx tailwindcss -i ./src/styles.css -o ./dist/output.css --minify",
+    "build-css:dev": "npx tailwindcss -i ./src/styles.css -o ./dist/output.css --watch",
     "test": "node ./utils/__tests__/GameUtil.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
     "@tailwindcss/cli": "^4.1.18",
     "tailwindcss": "^4.1.18"

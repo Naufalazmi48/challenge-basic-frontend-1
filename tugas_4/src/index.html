@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Typing Speed Test</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <link rel="stylesheet" href="../dist/output.css">
+</head>
+
+<body class="font-sora bg-neutral-900 p-4 pb-8 md:p-8 md:pb-16 2xl:px-28 2xl:py-16">
+  <header class="flex flex-row justify-between items-center mb-8 md:mb-10 2xl:mb-16">
+    <picture>
+      <source media="(max-width: 768px)" srcset="../assets/images/logo-small.svg">
+      <img src="../assets/images/logo-large.svg" alt="Logo">
+    </picture>
+
+    <div class="flex flex-row items-center gap-2">
+      <img src="../assets/images/icon-personal-best.svg" alt="Personal Best" class="w-5 h-4">
+      <p class="text-preset-3-mobile md:text-preset-4 text-neutral-400">
+        Personal Best:
+        <span class="text-preset-3-mobile md:text-preset-4 text-neutral-0">0 WPM</span>
+      </p>
+    </div>
+  </header>
+  <main class="flex flex-col gap-4">
+    <!-- Game Option -->
+    <div class="flex flex-col gap-4 2xl:flex-row 2xl:justify-between">
+      <!-- WPM, Accuracy, Time -->
+      <div class="flex flex-row gap-4 justify-center items-stretch md:justify-start md:gap-9">
+        <p class="text-preset-3-mobile flex flex-col items-center text-neutral-400 gap-1 md:flex-row md:text-preset-3">
+          WPM:
+          <span id="wpm-text" class="text-preset-2 text-neutral-0">0</span>
+        </p>
+        <div class="w-px bg-neutral-700"></div>
+        <p class="text-preset-3-mobile flex flex-col items-center text-neutral-400 gap-1 md:flex-row md:text-preset-3">
+          Accuracy:
+          <span id="accuracy-text" class="text-preset-2 text-neutral-0">0%</span>
+        </p>
+        <div class="w-px bg-neutral-700"></div>
+        <p class="text-preset-3-mobile flex flex-col items-center text-neutral-400 gap-1 md:flex-row md:text-preset-3">
+          Time:
+          <span id="timer-text" class="text-preset-2 text-neutral-0">0:00</span>
+        </p>
+      </div>
+
+      <!-- Mode -->
+      <div class="hidden md:flex flex-row gap-4">
+        <p class="text-preset-5 text-neutral-400 self-center">Difficulty:</p>
+        <div class="flex flex-row gap-2" id="difficulty-selector">
+        </div>
+        <div class="w-px bg-neutral-700 self-stretch"></div>
+        <p class="text-preset-5 text-neutral-400 self-center">Mode:</p>
+        <div class="flex flex-row gap-2" id="mode-selector">
+        </div>
+      </div>
+
+      <div class="flex flex-row gap-4 justify-center md:hidden" name="difficulty">
+        <select class="w-fit border rounded-lg text-preset-5 px-2.5 py-1.5 text-neutral-0 bg-neutral-900 border-neutral-500 text-center">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+        <select class="w-fit border rounded-lg text-preset-5 px-2.5 py-1.5 text-neutral-0 bg-neutral-900 border-neutral-500 text-center">
+          <option value="timed">Timed (60s)</option>
+          <option value="passage">Passage</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="h-px w-full bg-neutral-700"></div>
+
+    <!-- Game Content -->
+    <div class="mt-4 relative">
+      <div id="main-content-text-container" class="h-96 overflow-auto">
+        <p class="text-preset-1-regular-mobile text-neutral-400 ">The philosopher's argument hinged on a seemingly
+          paradoxical assertion: that absolute freedom, pursued without
+          constraint, inevitably undermines itself. "Consider," she wrote, "how the libertarian ideal—when taken to its
+          logical extreme—produces conditions in which the powerful dominate the weak, thereby eliminating freedom for
+          the
+          majority." Her critics dismissed this as sophistry; her supporters hailed it as profound.</p>
+      </div>
+
+      <div class="backdrop-blur-sm h-full w-full absolute top-0 left-0 z-10 flex flex-col items-center justify-center gap-4">
+        <button class="text-preset-3-semi-bold bg-blue-600 text-neutral-0 px-6 py-4 rounded-xl" id="start-button">Start Typing Test</button>
+        <p class="text-preset-3-semi-bold text-neutral-0">Or click the text and start typing</p>
+      </div>
+    </div>
+
+    <div class="h-px w-full bg-neutral-700 my-8"></div>
+
+    <div id="restart-test-container" class="self-center hidden">
+      <button class="text-preset-3-semi-bold flex flex-row items-center gap-2 bg-neutral-700 text-neutral-0 px-4 py-2.5 rounded-xl" id="restart-button">
+        Restart Test
+        <img src="../assets/images/icon-restart.svg" alt="Restart">
+      </button>
+    </div>
+  </main>
+  <script type="module" src="./main.js"></script>
+</body>
+
+</html>
