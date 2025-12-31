@@ -22,6 +22,23 @@
   --color-green-500: #4DD67B;
 
   --color-yellow-400: #F4DC73;
+
+  --animate-confetti: confetti-slide 5s ease-in-out forwards;
+
+  @keyframes confetti-slide {
+
+    0%,
+    100% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+
+    20%,
+    80% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 }
 
 
