@@ -62,14 +62,9 @@
       </div>
 
       <div class="flex flex-row gap-4 justify-center md:hidden" name="difficulty">
-        <select class="w-fit border rounded-lg text-preset-5 px-2.5 py-1.5 text-neutral-0 bg-neutral-900 border-neutral-500 text-center">
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
+        <select id="difficulty-selector-mobile" class="w-fit border rounded-lg text-preset-5 px-2.5 py-1.5 text-neutral-0 bg-neutral-900 border-neutral-500 text-center">
         </select>
-        <select class="w-fit border rounded-lg text-preset-5 px-2.5 py-1.5 text-neutral-0 bg-neutral-900 border-neutral-500 text-center">
-          <option value="timed">Timed (60s)</option>
-          <option value="passage">Passage</option>
+        <select id="mode-selector-mobile" class="w-fit border rounded-lg text-preset-5 px-2.5 py-1.5 text-neutral-0 bg-neutral-900 border-neutral-500 text-center">
         </select>
       </div>
     </div>
@@ -79,7 +74,7 @@
     <!-- Game Content -->
     <div class="mt-4 relative">
       <div id="main-content-text-container" class="h-96 overflow-auto">
-        <p class="text-preset-1-regular-mobile text-neutral-400 ">The philosopher's argument hinged on a seemingly
+        <p class="text-preset-1-regular-mobile text-neutral-400 md:text-preset-1-regular">The philosopher's argument hinged on a seemingly
           paradoxical assertion: that absolute freedom, pursued without
           constraint, inevitably undermines itself. "Consider," she wrote, "how the libertarian ideal—when taken to its
           logical extreme—produces conditions in which the powerful dominate the weak, thereby eliminating freedom for
@@ -87,7 +82,7 @@
           majority." Her critics dismissed this as sophistry; her supporters hailed it as profound.</p>
       </div>
 
-      <div class="backdrop-blur-sm h-full w-full absolute top-0 left-0 z-10 flex flex-col items-center justify-center gap-4">
+      <div id="floating-container" class="backdrop-blur-sm h-full w-full absolute top-0 left-0 z-10 flex flex-col items-center justify-center gap-4">
         <button class="text-preset-3-semi-bold bg-blue-600 text-neutral-0 px-6 py-4 rounded-xl" id="start-button">Start Typing Test</button>
         <p class="text-preset-3-semi-bold text-neutral-0">Or click the text and start typing</p>
       </div>

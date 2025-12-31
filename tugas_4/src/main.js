@@ -1,30 +1,87 @@
-import { GameSetting } from "./components/game-setting.js";
 import { Game } from "./components/game.js";
 import { CSS_VAR_COLORS } from "./constants/colors.js";
 import { GAME_STATUS } from "./constants/game-status.js";
 import { GAME_DIFFICULTIES, GAME_MODES } from "./constants/game-setting.js";
+import { CHALLENGE_SPAN } from "./constants/styles.js";
+import { OPTION_BORDER } from "./constants/styles.js";
+import { GameSetting } from "./components/game-setting.js";
+
+function settingOnClickSelectorListener(event, selector, setting) {
+  const isSelectorMobile = selector.id === 'difficulty-selector-mobile' || selector.id === 'mode-selector-mobile';
+  const optionId = isSelectorMobile ? event.target.value : event.target.dataset.id;
+  const selectedChild = Array.from(selector.children).find(child => child.dataset.id === optionId);
+
+  if (isSelectorMobile) {
+    selectedChild.selected = true;
+  } else {
+    Array.from(selector.children).forEach(child => {
+      if (child !== selectedChild) {
+        child.className = OPTION_BORDER.UNSELECTED;
+      }
+    });
+    selectedChild.className = OPTION_BORDER.SELECTED;
+  }
+
+  setting.setOptionSelected(optionId);
+}
+
+function renderSettingOption(options, selectors, setting, listener) {
+  Array.from(selectors).forEach(selector => {
+    if (selector.id === 'difficulty-selector' || selector.id === 'mode-selector') {
+      options.forEach(option => {
+        const optionElement = document.createElement('span');
+        optionElement.textContent = option.label;
+        optionElement.className = OPTION_BORDER.UNSELECTED;
+        optionElement.dataset.id = option.id;
+        optionElement.addEventListener('click', (event) => listener(event, selector, setting));
+        selector.appendChild(optionElement);
+      });
+      const firstChild = selector.children[0];
+      firstChild.className = OPTION_BORDER.SELECTED;
+      setting.setOptionSelected(firstChild.dataset.id);
+    } else if (selector.id === 'difficulty-selector-mobile' || selector.id === 'mode-selector-mobile') {
+      options.forEach(option => {
+        const optionElement = document.createElement('option');
+        optionElement.textContent = option.label;
+        optionElement.value = option.id;
+        optionElement.dataset.id = option.id;
+        selector.appendChild(optionElement);
+      });
+      selector.addEventListener('change', (event) => listener(event, selector, setting));
+      const firstChild = selector.children[0];
+      setting.setOptionSelected(firstChild.dataset.id);
+    }
+  });
+}
+
+const game = new Game();
 
 const difficulties = GAME_DIFFICULTIES;
-const difficultySetting = new GameSetting(document.getElementById('difficulty-selector'), difficulties);
+const difficultySetting = new GameSetting(difficulties);
+
+const difficultySelectors = [
+  document.getElementById('difficulty-selector'),
+  document.getElementById('difficulty-selector-mobile')
+];
 
 const modes = GAME_MODES;
-const modeSetting = new GameSetting(document.getElementById('mode-selector'), modes);
+const modeSetting = new GameSetting(modes);
 
-const game = new Game(difficultySetting.getSelectedOptionId(), modeSetting.getSelectedOptionId());
+const modeSelectors = [
+  document.getElementById('mode-selector'),
+  document.getElementById('mode-selector-mobile')
+];
 
-function onDifficultyChangedListener(difficultyId) {
-  game.setDifficultId(difficultyId);
-}
+difficultySetting.setOnChangedOptionListener((optionId) => {
+  game.setDifficultId(optionId);
+});
 
-function onModeChangedListener(modeId) {
-  game.setModeId(modeId);
-}
+modeSetting.setOnChangedOptionListener((optionId) => {
+  game.setModeId(optionId);
+});
 
-difficultySetting.setOnChangedOptionListener(onDifficultyChangedListener);
-modeSetting.setOnChangedOptionListener(onModeChangedListener);
-
-difficultySetting.render();
-modeSetting.render();
+renderSettingOption(difficulties, difficultySelectors, difficultySetting, settingOnClickSelectorListener);
+renderSettingOption(modes, modeSelectors, modeSetting, settingOnClickSelectorListener);
 
 function onChallengeTextUpdateListener(text) {
   const mainText = document.getElementById('main-content-text-container');
@@ -33,20 +90,18 @@ function onChallengeTextUpdateListener(text) {
   text.split('').forEach(char => {
     const charElement = document.createElement('span');
     charElement.textContent = char;
-    charElement.classList.add('main-content-text-non-focused');
-    charElement.classList.add('text-preset-1-regular');
+    charElement.className = CHALLENGE_SPAN.DEFAULT;
     mainText.appendChild(charElement);
   });
 
-  mainText.children[0].style.backgroundColor = CSS_VAR_COLORS.NEUTRAL_800;
+  mainText.children[0].className = CHALLENGE_SPAN.FOCUSED;
 }
 
 function updateSettingGameUI({ isGameStarted }) {
-  difficultySetting.setOptionOnClickEvent(!isGameStarted);
-  modeSetting.setOptionOnClickEvent(!isGameStarted);
-
-  document.getElementById('floating-container').style.display = isGameStarted ? 'none' : 'flex';
-  document.getElementById('restart-test-container').style.display = isGameStarted ? 'flex' : 'none';
+  document.getElementById('floating-container').classList.remove(isGameStarted ? 'flex' : 'hidden');
+  document.getElementById('floating-container').classList.add(isGameStarted ? 'hidden' : 'flex');
+  document.getElementById('restart-test-container').classList.remove(isGameStarted ? 'hidden' : 'flex');
+  document.getElementById('restart-test-container').classList.add(isGameStarted ? 'flex' : 'hidden');
 }
 
 const onKeyDownListener = (event) => {
@@ -71,12 +126,12 @@ function onEndGameListener() {
 
 function onTypingLetterListener(isCorrectLetter, index) {
   const mainText = document.getElementById('main-content-text-container');
-  mainText.children[index].style.color = isCorrectLetter ? CSS_VAR_COLORS.GREEN_500 : CSS_VAR_COLORS.RED_500;
-  mainText.children[index].style.backgroundColor = null;
+  const currentChild = mainText.children[index];
+  currentChild.className = isCorrectLetter ? CHALLENGE_SPAN.CORRECT : CHALLENGE_SPAN.INCORRECT;
 
   const nextChild = mainText.children[index + 1];
   if (nextChild) {
-    nextChild.style.backgroundColor = CSS_VAR_COLORS.NEUTRAL_800;
+    nextChild.className = CHALLENGE_SPAN.FOCUSED;
     nextChild.scrollIntoView({
       behavior: "smooth",
       block: "nearest"

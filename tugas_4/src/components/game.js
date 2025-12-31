@@ -10,9 +10,7 @@ export class Game {
   wpm = 0;
   timerInSecond = 0;
 
-  constructor(difficultId, modeId) {
-    this.difficultId = difficultId;
-    this.modeId = modeId;
+  constructor() {
     this.data = data;
 
     this.setGameStatus = this.setGameStatus.bind(this);
