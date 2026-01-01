@@ -35,6 +35,10 @@ export class Game {
     return this.modeId === GAME_MODE_OPTION.TIMED ? 60 : 1800; // force timeout in 30 minutes
   }
 
+  getCharacterScore() {
+    return GameUtil.countCharacter({ challengeText: this.challengeText, submittedText: this.submissionText });
+  }
+
   // ==================================== Setter ======================================
   setDifficultId(difficultId) {
     this.difficultId = difficultId;
@@ -115,7 +119,13 @@ export class Game {
       case GAME_STATUS.END:
         this._stopTimer();
         this._updateScore();
-        this.onEndGameListener();
+        const { totalCorrectCharacter, totalWrongCharacter } = this.getCharacterScore();
+        this.onEndGameListener({
+          wpm: this.wpm,
+          accuracy: this.accuracy,
+          totalCorrectCharacter,
+          totalWrongCharacter,
+        });
         break;
     }
   }
@@ -142,7 +152,7 @@ export class Game {
   };
 
   _updateScore() {
-    const { totalCorrectCharacter, totalSubmittedCharacter, totalWrongCharacter } = GameUtil.countCharacter({ challengeText: this.challengeText, submittedText: this.submissionText });
+    const { totalCorrectCharacter, totalSubmittedCharacter, totalWrongCharacter } = this.getCharacterScore();
     this._updateWPMScore({ totalCorrectCharacter });
     this._updateAccuracyScore({ totalSubmittedCharacter, totalWrongCharacter });
   }

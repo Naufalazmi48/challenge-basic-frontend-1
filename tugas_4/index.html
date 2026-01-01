@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
 
   <title>Frontend Mentor | Typing Speed Test</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <link rel="stylesheet" href="../dist/output.css">
+  <link rel="stylesheet" href="./dist/output.css">
 </head>
 
 <body class="font-sora h-screen w-screen flex flex-col bg-neutral-900 p-4 pb-8 md:p-8 md:pb-16 2xl:px-28 2xl:py-16">
@@ -53,13 +53,13 @@
       </svg>
       <p class="text-preset-3-mobile md:text-preset-4 text-neutral-400">
         Personal Best:
-        <span class="text-preset-3-mobile md:text-preset-4 text-neutral-0">0 WPM</span>
+        <span id="personal-best-wpm" class="text-preset-3-mobile md:text-preset-4 text-neutral-0">0 WPM</span>
       </p>
     </div>
   </header>
   <main class="flex flex-col mt-8 flex-1">
     <!-- Game Screen -->
-    <div class="flex flex-col gap-4 flex-1 hidden">
+    <div id="game-container" class="flex flex-col gap-4 flex-1">
       <!-- Game Option -->
       <div class="flex flex-col gap-4 2xl:flex-row 2xl:justify-between">
         <!-- WPM, Accuracy, Time -->
@@ -143,15 +143,15 @@
     </div>
 
     <!-- Game Result -->
-    <div class="flex flex-col items-center flex-1 relative">
+    <div id="scoreboard-container" class="hidden flex-col items-center flex-1 relative">
       <!-- Completed Icon -->
       <div id="completed-icon" class="h-auto w-auto rounded-full shadow-[0_0_0_8px_rgba(77,214,123,0.1)] p-2">
-        <img src="../assets/images/icon-completed.svg" alt="Completed"
+        <img src="./assets/images/icon-completed.svg" alt="Completed"
           class="h-8 w-8 rounded-full shadow-[0_0_0_8px_rgba(77,214,123,0.3)] md:h-12 md:w-12">
       </div>
 
       <!-- Reached new personal best icon -->
-      <svg xmlns="http://www.w3.org/2000/svg" class='hidden w-16 h-16' viewBox="0 0 80 80">
+      <svg id="new-best-icon" xmlns="http://www.w3.org/2000/svg" class='hidden w-16 h-16' viewBox="0 0 80 80">
         <path stroke="#f4dc73" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"
           d="M29.579 58.003c2.938 2.744 11.607-1.77 19.365-10.08 7.755-8.309 11.663-17.267 8.725-20.01s-11.611 1.77-19.366 10.08c-7.758 8.309-11.663 17.267-8.724 20.01"
           clip-rule="evenodd" />
@@ -165,8 +165,9 @@
           d="M42.438 42.269s-10.82-11.163-27.392-6.444M46.17 11.667s-6.266 8.578.674 18.892" />
       </svg>
 
-      <p class="text-preset-1-mobile text-neutral-0 mt-8 md:text-preset-1">Test Complete!</p>
-      <p class="text-preset-5 text-neutral-400 mt-2 text-center md:text-preset-3">Solid run. Keep pushing to beat your
+      <p id="score-title" class="text-preset-1-mobile text-neutral-0 mt-8 md:text-preset-1">Test Complete!</p>
+      <p id="score-description" class="text-preset-5 text-neutral-400 mt-2 text-center md:text-preset-3">Solid run. Keep
+        pushing to beat your
         high score.
       </p>
 
@@ -175,25 +176,26 @@
         <!-- WPM -->
         <p class="flex flex-col gap-2 text-preset-3 text-neutral-400 border border-neutral-700 rounded-xl px-6 py-4">
           WPM:
-          <span class="text-preset-2 text-neutral-0">0</span>
+          <span id="score-wpm" class="text-preset-2 text-neutral-0">0</span>
         </p>
         <!-- Accuracy -->
         <p class="flex flex-col gap-2 text-preset-3 text-neutral-400 border border-neutral-700 rounded-xl px-6 py-4">
           Accuracy:
-          <span class="text-preset-2 text-neutral-0">0%</span>
+          <span id="score-accuracy" class="text-preset-2 text-neutral-0">0%</span>
         </p>
         <!-- Character -->
         <p class="flex flex-col gap-2 text-preset-3 text-neutral-400 border border-neutral-700 rounded-xl px-6 py-4">
           Characters:
-          <span class="text-preset-2 text-neutral-0">0
+          <span class="flex gap-1">
+            <span id="score-character-correct" class="text-preset-2 text-green-500">0</span>
             <span class="text-preset-2 text-neutral-400">/</span>
-            <span class="text-preset-2 text-neutral-0">0</span>
+            <span id="score-character-wrong" class="text-preset-2 text-red-500">0</span>
           </span>
         </p>
       </div>
 
       <!-- Btn Go Again -->
-      <button
+      <button id="go-again-button"
         class="flex flex-row items-center gap-2 text-preset-3-semi-bold bg-neutral-0 text-neutral-900 px-4 py-3 rounded-xl mt-8">
         Go Again
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-neutral-900" viewBox="0 0 20 20">
@@ -204,7 +206,8 @@
 
       <!-- Decoration -->
       <!-- Star 1 -->
-      <svg xmlns="http://www.w3.org/2000/svg" class="hidden w-18 h-18 absolute bottom-0 right-0" viewBox="0 0 74 74">
+      <svg xmlns="http://www.w3.org/2000/svg" id="star-1-icon" class="hidden w-18 h-18 absolute bottom-0 right-0"
+        viewBox="0 0 74 74">
         <g clip-path="url(#a)">
           <mask id="b" width="74" height="74" x="0" y="0" maskUnits="userSpaceOnUse" style="mask-type:luminance">
             <path fill="#fff" d="M74 0H0v74h74z" />
@@ -222,7 +225,8 @@
       </svg>
 
       <!-- Star 2 -->
-      <svg xmlns="http://www.w3.org/2000/svg" class="hidden w-8 h-8 absolute top-0 left-0" viewBox="0 0 32 32">
+      <svg xmlns="http://www.w3.org/2000/svg" id="star-2-icon" class="hidden w-8 h-8 absolute top-0 left-0"
+        viewBox="0 0 32 32">
         <g clip-path="url(#a)">
           <mask id="b" width="32" height="32" x="0" y="0" maskUnits="userSpaceOnUse" style="mask-type:luminance">
             <path fill="#fff" d="M32 0H0v32h32z" />
@@ -350,7 +354,7 @@
       </svg>
     </div>
   </main>
-  <script type="module" src="./main.js"></script>
+  <script type="module" src="./src/main.js"></script>
 </body>
 
 </html>
